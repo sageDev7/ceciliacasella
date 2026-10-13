@@ -82,11 +82,10 @@ body.nav-open .mnav-ov{opacity:1;visibility:visible}
 
 /* ---------- hero (composición del banner) ---------- */
 .hero{position:relative;height:100vh;height:100svh;min-height:640px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background:url('https://images.pexels.com/photos/7875842/pexels-photo-7875842.jpeg?auto=compress&cs=tinysrgb&w=1920') center 55%/cover no-repeat}
-.hero-bg::after{content:"";position:absolute;inset:0;background:
-  linear-gradient(90deg,rgba(255,255,255,.12) 0%,rgba(255,255,255,.7) 26%,rgba(255,255,255,.84) 50%,rgba(255,255,255,.7) 74%,rgba(255,255,255,.12) 100%),
-  linear-gradient(0deg,rgba(255,255,255,.55) 0%,transparent 30%)}
-.hero-in{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;padding:var(--hdr) 1.5rem 0}
+.hero-bg{position:absolute;inset:0;background:#EFE8E1 url('./img/hero.jpg') 28% center/cover no-repeat}
+/* la foto del banner de la clienta; velo blanco suave detrás del texto para más luz y contraste con el logo */
+.hero-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 42% 60% at 50% 46%,rgba(255,255,255,.62) 0%,rgba(255,255,255,.3) 55%,transparent 100%)}
+.hero-in{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;padding:var(--hdr) 1.5rem 4.5rem}
 .hero-mark{width:clamp(170px,19vw,240px)}
 .rule{display:block;width:64px;height:1px;background:var(--gold);margin:1.6rem 0}
 .hero-h1{font-size:clamp(2.6rem,4.6vw,3.9rem);font-weight:500;line-height:1.08}
@@ -261,8 +260,11 @@ body.nav-open .mnav-ov{opacity:1;visibility:visible}
   .wrap{padding:0 1.25rem}
   .hdr-mark{width:86px}
   .hero{min-height:0}
-  .hero-bg{background-position:62% 55%}
-  .hero-bg::after{background:linear-gradient(180deg,rgba(255,255,255,.72) 0%,rgba(255,255,255,.86) 45%,rgba(255,255,255,.8) 100%)}
+  /* mobile: versión vertical de la foto del banner; texto sobre la pared, estatua debajo de los botones */
+  .hero{height:auto;padding-bottom:360px}
+  .hero-in{padding-top:calc(var(--hdr) + 2.2rem);padding-bottom:0}
+  .hero-bg{background:#EEE7E0 url('./img/hero-mobile.jpg') 0% 100%/cover no-repeat}
+  .hero-bg::after{background:radial-gradient(ellipse 80% 45% at 50% 32%,rgba(255,255,255,.55) 0%,transparent 100%)}
   .hero-mark{width:150px}
   .rule{margin:1.2rem 0}
   .hero-h1{font-size:clamp(2.2rem,9vw,2.8rem)}
