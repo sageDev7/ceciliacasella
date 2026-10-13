@@ -2,7 +2,7 @@
   "use strict";
 
   /* ---------- WhatsApp: número único para todos los botones ---------- */
-  var WA_NUMBER = "5490000000000"; // PENDIENTE: reemplazar por el número real de la Dra. Casella
+  var WA_NUMBER = "5491140764045"; // celular de la Dra. Casella (11 4076-4045)
   document.querySelectorAll(".js-wa").forEach(function (a) {
     var msg = a.getAttribute("data-msg") || "Hola, quisiera hacer una consulta.";
     a.href = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(msg);
@@ -24,9 +24,10 @@
   function setNav(open) {
     body.classList.toggle("nav-open", open);
     burger.setAttribute("aria-expanded", open ? "true" : "false");
+    burger.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
   }
-  burger.addEventListener("click", function () { setNav(true); });
-  document.getElementById("mnavX").addEventListener("click", function () { setNav(false); });
+  /* la hamburguesa se transforma en cruz */
+  burger.addEventListener("click", function () { setNav(!body.classList.contains("nav-open")); });
   document.getElementById("mnavOv").addEventListener("click", function () { setNav(false); });
   document.querySelectorAll(".mnav a").forEach(function (a) { a.addEventListener("click", function () { setNav(false); }); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") setNav(false); });
@@ -75,6 +76,51 @@
     });
     fio.observe(document.getElementById("contacto"));
     fio.observe(document.getElementById("ftr"));
+  }
+
+  /* ---------- formulario: se envía por email (FormSubmit) o por WhatsApp ---------- */
+  var form = document.getElementById("contactForm"), btn = document.getElementById("formSubmitBtn");
+  var waBtn = document.getElementById("formWaBtn"), email = document.getElementById("fEmail");
+  var iframe = document.getElementById("formsubmit-iframe"), modal = document.getElementById("okModal"), sending = false;
+  if (form) {
+    var valid = function (input, porEmail) {
+      var v = input.value.trim();
+      var ok = input === email
+        ? (v === "" ? !porEmail : /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v))
+        : v !== "";
+      input.closest(".field").classList.toggle("err", !ok);
+      return ok;
+    };
+    var check = function (porEmail) {
+      var ok = true;
+      form.querySelectorAll("[required]").forEach(function (i) { if (!valid(i, porEmail)) ok = false; });
+      if (!valid(email, porEmail)) ok = false;
+      if (!ok) { var f = form.querySelector(".field.err input,.field.err select,.field.err textarea"); if (f) f.focus(); }
+      return ok;
+    };
+    form.addEventListener("submit", function (e) {
+      if (!check(true)) { e.preventDefault(); return; }
+      sending = true; btn.disabled = true; btn.textContent = "Enviando...";
+    });
+    waBtn.addEventListener("click", function () {
+      if (!check(false)) return;
+      var val = function (id) { return document.getElementById(id).value.trim(); };
+      var txt = "Hola, soy " + val("fNombre") + ". Quisiera hacer una consulta sobre " + val("fArea") + ".\n\n" + val("fMsg") +
+        "\n\nTeléfono: " + val("fTel") + (val("fEmail") ? "\nEmail: " + val("fEmail") : "");
+      window.open("https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(txt), "_blank", "noopener");
+    });
+    form.querySelectorAll("input:not([type=hidden]),select,textarea").forEach(function (i) {
+      var re = function () { if (i.closest(".field") && i.closest(".field").classList.contains("err")) valid(i, false); };
+      i.addEventListener("input", re);
+      i.addEventListener("change", re);
+    });
+    iframe.addEventListener("load", function () {
+      if (!sending) return;
+      sending = false; form.reset(); btn.disabled = false; btn.textContent = "Enviar por email";
+      modal.classList.add("show");
+    });
+    modal.addEventListener("click", function (e) { if (e.target === modal || e.target.hasAttribute("data-close")) modal.classList.remove("show"); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") modal.classList.remove("show"); });
   }
 
   document.getElementById("yr").textContent = new Date().getFullYear();
