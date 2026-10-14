@@ -35,7 +35,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.08;color:var(--n
 .eyebrow{font-size:.76rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
 .eyebrow-light{color:var(--gold-l)}
 .h2{font-size:clamp(2.5rem,4.8vw,3.7rem);letter-spacing:-.005em}
-.h2 em{font-style:italic;font-weight:400;color:var(--gold);background:linear-gradient(100deg,#9E7A45 0%,#B08B52 48%,#B89054 52%,#9E7A45 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.h2 em{font-style:italic;font-weight:400;color:var(--gold)}
 .lead{font-size:1.08rem;color:var(--muted)}
 .sec-head{text-align:center;max-width:46rem;margin:0 auto 3.6rem}
 
@@ -299,9 +299,9 @@ body.nav-open .mnav-ov{opacity:1;visibility:visible}
   .timeline p{margin:0 auto}
   .p-cta{margin-left:0}
   .contacto{padding:76px 0}
-  .cierre{padding:76px 0 84px}
-  .cierre-bg{background-position:10% center}
-  .cierre-bg::after{background:rgba(255,255,255,.72)}
+  .cierre{padding:72px 0 80px}
+  .cierre-bg{background:radial-gradient(ellipse 90% 70% at 50% 40%,#fff 0%,#F7F2EA 55%,#EFE6D8 100%)}
+  .cierre-bg::after{display:none}
   .cierre-kicker{font-size:.9rem;letter-spacing:.28em;padding-left:.28em}
   .estudio-copy{text-align:center}
   .estudio-txt{margin-left:auto;margin-right:auto}
