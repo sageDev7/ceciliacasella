@@ -21,7 +21,7 @@
   --ease:cubic-bezier(.2,.7,.2,1);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{color-scheme:only light;scroll-behavior:smooth;overflow-x:hidden;scroll-padding-top:var(--hdr)}
+html{color-scheme:only light;background:#fff;scroll-behavior:smooth;overflow-x:hidden;scroll-padding-top:var(--hdr)}
 body{font-family:var(--sans);font-size:1rem;line-height:1.7;color:var(--ink);background:var(--cream);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%;height:auto}
 a{color:inherit;text-decoration:none}
@@ -199,7 +199,9 @@ body.nav-open .mnav-ov{opacity:1;visibility:visible}
 .cierre-bg{position:absolute;inset:0;background:#EFE8E1 url('./img/hero.jpg') 22% center/cover no-repeat}
 .cierre-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 46% 70% at 50% 50%,rgba(255,255,255,.78) 0%,rgba(255,255,255,.45) 55%,rgba(255,255,255,.1) 100%)}
 .cierre-in{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;max-width:640px;margin:0 auto;padding:0 1.5rem}
-.cierre-mark{width:clamp(150px,15vw,200px);margin-bottom:1.1rem}
+.cierre-logo{position:relative;margin-bottom:1.6rem;padding:26px 38px;background:#fff;border:1px solid var(--gold);box-shadow:0 22px 44px -22px rgba(24,42,56,.4)}
+.cierre-logo::before{content:"";position:absolute;inset:6px;border:1px solid rgba(184,144,84,.4);pointer-events:none}
+.cierre-logo img{display:block;width:clamp(140px,13vw,180px)}
 .cierre-kicker{font-family:var(--serif);font-weight:600;font-size:1.05rem;letter-spacing:.38em;padding-left:.38em;text-transform:uppercase;color:var(--navy)}
 .cierre .rule{margin:.9rem 0}
 .cierre-name{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,3.4vw,2.8rem);line-height:1.1;color:var(--navy)}
@@ -331,4 +333,12 @@ body.nav-open .mnav-ov{opacity:1;visibility:visible}
   .hero-areas a{padding:.15rem .55rem;font-size:.6rem;letter-spacing:.1em}
   .hero-in{width:100%;padding-left:1.1rem;padding-right:1.1rem}
   .btn{padding:0 1rem;letter-spacing:.1em}
+}
+
+/* Anti modo oscuro forzado: Samsung Internet y algunas WebView ignoran «only light»,
+   pero no invierten la página si detectan un tema oscuro propio. Este «tema oscuro» repite los colores claros. */
+@media (prefers-color-scheme:dark){
+  :root{color-scheme:only light}
+  html{background:#fff}
+  body{background:var(--cream);color:var(--ink)}
 }
