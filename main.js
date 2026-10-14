@@ -76,6 +76,7 @@
     });
     fio.observe(document.getElementById("contacto"));
     fio.observe(document.getElementById("ftr"));
+    fio.observe(document.getElementById("cierre"));
   }
 
   /* ---------- formulario: se envía por email (FormSubmit) o por WhatsApp ---------- */
