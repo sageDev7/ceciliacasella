@@ -9,8 +9,8 @@
   --paper:#E8EBEE;
   --navy:#182A38;
   --navy-2:#20384A;
-  --gold:#A4865C;
-  --gold-l:#C2A06E;
+  --gold:#A97F28;
+  --gold-l:#D9B45A;
   --ink:#1E2A33;
   --muted:#5D646B;
   --line:rgba(24,42,56,.12);
@@ -35,7 +35,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.08;color:var(--n
 .eyebrow{font-size:.76rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
 .eyebrow-light{color:var(--gold-l)}
 .h2{font-size:clamp(2.5rem,4.8vw,3.7rem);letter-spacing:-.005em}
-.h2 em{font-style:italic;font-weight:400;color:var(--gold)}
+.h2 em{font-style:italic;font-weight:400;color:var(--gold);background:linear-gradient(100deg,#9A7322 0%,#B08A2E 48%,#B8913A 52%,#9A7322 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .lead{font-size:1.08rem;color:var(--muted)}
 .sec-head{text-align:center;max-width:46rem;margin:0 auto 3.6rem}
 
@@ -102,14 +102,13 @@ body.nav-open .mnav-ov{opacity:1;visibility:visible}
 .panels{display:flex;gap:14px;height:520px}
 .panel{position:relative;flex:1;min-width:0;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;justify-content:space-between;padding:2rem;color:#fff;cursor:pointer;outline:none}
 .panel,.panel.reveal{transition:flex 1.1s cubic-bezier(.65,0,.35,1),opacity .9s var(--ease),transform .9s var(--ease)}
-.panel::before{content:"";position:absolute;inset:0;z-index:-2;background:var(--img) var(--pos,center)/cover no-repeat;transition:transform 1.6s cubic-bezier(.65,0,.35,1)}
+.panel::before{content:"";position:absolute;inset:0;z-index:-2;background:var(--img) var(--pos,center)/cover no-repeat;filter:contrast(1.08) saturate(1.12) brightness(1.04);transition:transform 1.6s cubic-bezier(.65,0,.35,1)}
 .panel::after{content:"";position:absolute;inset:0;z-index:-1;background:
-  linear-gradient(0deg,rgba(24,42,56,.94) 0%,rgba(24,42,56,.55) 50%,rgba(24,42,56,.3) 100%),
-  linear-gradient(140deg,rgba(164,134,92,.25) 0%,transparent 60%)}
+  linear-gradient(0deg,rgba(24,42,56,.9) 0%,rgba(24,42,56,.5) 30%,rgba(24,42,56,.22) 55%,rgba(24,42,56,.2) 75%,rgba(24,42,56,.35) 100%)}
 .panel.is-open{flex:2.6;cursor:default}
 .panel.is-open::before{transform:scale(1.04)}
-.p-n{font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--gold-l)}
-.panel h3{font-size:1.55rem;line-height:1.1;color:#fff;transition:font-size .6s var(--ease)}
+.p-n{font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--gold-l);text-shadow:0 1px 8px rgba(15,30,41,.6)}
+.panel h3{font-size:1.55rem;line-height:1.1;color:#fff;text-shadow:0 1px 14px rgba(15,30,41,.65);transition:font-size .6s var(--ease)}
 .panel.is-open h3{font-size:clamp(1.9rem,2.6vw,2.5rem)}
 .p-body p,.p-link{max-width:380px;opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .6s var(--ease)}
 .p-body p{margin:.8rem 0 1.3rem;font-size:.97rem;color:rgba(255,255,255,.86)}
@@ -125,6 +124,8 @@ body.nav-open .mnav-ov{opacity:1;visibility:visible}
 .proceso-img{position:relative;margin:0 0 0 0}
 .proceso-img::before{content:"";position:absolute;inset:-22px 22px 22px -22px;border:1px solid var(--gold);z-index:0}
 .proceso-img img{position:relative;z-index:1;width:100%;aspect-ratio:4/5;object-fit:cover}
+.logo-panel{position:relative;z-index:1;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 42%,var(--navy-2),var(--navy-3) 75%)}
+.logo-panel img{width:64%;height:auto;aspect-ratio:auto;object-fit:contain}
 .timeline{position:relative;margin:3rem 0 2.6rem}
 .timeline::before{content:"";position:absolute;left:1.9rem;top:1.4rem;bottom:1.4rem;width:1px;background:linear-gradient(var(--gold),rgba(164,134,92,.25))}
 .timeline li{position:relative;display:grid;grid-template-columns:3.8rem 1fr;gap:1.6rem;align-items:start;padding:1.2rem 0}
@@ -249,7 +250,8 @@ body.nav-open .mnav-ov{opacity:1;visibility:visible}
   .proceso-grid{grid-template-columns:1fr;gap:4rem}
   .proceso-img{max-width:440px;width:calc(100% - 28px);margin:14px auto 0}
   .proceso-img::before{inset:-14px}
-  .proceso-img img{aspect-ratio:4/3}
+  .proceso-img img,.logo-panel{aspect-ratio:4/3}
+  .logo-panel img{width:56%;aspect-ratio:auto}
   .contacto-grid{grid-template-columns:1fr;gap:3.5rem}
   .contacto-info{max-width:640px}
   .crest{max-width:340px;width:100%;margin:0 auto;aspect-ratio:1/1}
